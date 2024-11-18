@@ -1,0 +1,734 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --black-color: hsl(220, 24%, 12%);
+  --black-color-light: hsl(220, 24%, 15%);
+  --black-color-lighten: hsl(220, 20%, 18%);
+  --white-color: #fff;
+  --body-color: hsl(220, 100%, 97%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Montserrat", sans-serif;
+  --normal-font-size: .938rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  
+}
+
+ul {
+  list-style: none;
+  /* Color highlighting when pressed on mobile devices */
+  /*-webkit-tap-highlight-color: transparent;*/
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1120px;
+  margin-inline: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e64545;
+  box-shadow: 0 2px 16px hsla(220, 32%, 8%, .3);
+  z-index: var(--z-fixed);
+}
+
+/*=============== NAV ===============*/
+/* Container for the logo and brand name */
+.nav__data {
+  display: flex;
+  align-items: center;
+  gap: 1px; /* Space between logo and brand name */
+  margin-right: auto;
+}
+
+/* Logo styling */
+.logo {
+  width: 50px; /* Adjust size as necessary */
+  height: auto;
+  display: inline-block;
+  margin-left: -100px;
+}
+
+/* Brand name styling */
+.nav-brand {
+  font-family: 'Roboto', sans-serif; /* Replace with preferred font */
+  font-size: 1.5rem; /* Adjust font size */
+  font-weight: bold;
+  color: #fff; /* Dark color for visibility */
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin-left: -50px;
+}
+
+/* Toggle icon styling for mobile view */
+.nav__toggle {
+  display: none; /* Hidden by default */
+  cursor: pointer;
+}
+
+.nav__toggle .nav__burger,
+.nav__toggle .nav__close {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+/* Responsive: Show toggle icon on smaller screens */
+@media (max-width: 768px) {
+  .nav__toggle {
+      display: inline-block;
+  }
+
+  .nav-brand, .logo {
+      font-size: 1.2rem;
+  }
+}
+
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1118px) {
+  .nav__menu {
+    position: absolute;
+    left: 0;
+    top: 2.5rem;
+    width: 100%;
+    height: calc(100vh - 3.5rem);
+    overflow: auto;
+    pointer-events: none;
+    opacity: 0;
+    transition: top .4s, opacity .3s;
+  }
+  .nav__menu::-webkit-scrollbar {
+    width: 0;
+  }
+  .nav__list {
+    background-color: var(--black-color);
+    padding-top: 1rem;
+  }
+}
+
+.nav__menu{
+  margin-left: auto; /* Pushes the nav items to the right */
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+}
+
+.nav__list {
+  display: flex;
+  gap: 0.25rem; /* Reduce space between items */
+}
+
+.nav__link {
+  color: var(--white-color);
+  background-color: #e64545;
+  font-weight: var(--font-semi-bold);
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .3s;
+  width: 100px;
+}
+
+
+/* Show menu */
+.show-menu {
+  opacity: 1;
+  top: 3.5rem;
+  pointer-events: initial;
+}
+
+
+
+/*=============== DROPDOWN ===============*/
+.dropdown__item {
+  cursor: pointer;
+}
+
+.dropdown__arrow {
+  font-size: 1.25rem;
+  font-weight: initial;
+  transition: transform .4s;
+}
+
+.dropdown__link, 
+.dropdown__sublink {
+  padding: 1.25rem 1.25rem 1.25rem 2.5rem;
+  color: black;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  font-weight: var(--font-semi-bold);
+  transition: background-color .3s;
+}
+
+
+
+.dropdown__link:hover, 
+.dropdown__sublink:hover {
+  color: #e64545;
+}
+
+.dropdown__menu, 
+.dropdown__submenu {
+  max-height: 0;
+  overflow: hidden;
+  width: 200px;
+  transition: max-height .4s ease-out;
+}
+
+/* Show dropdown menu & submenu */
+.dropdown__item:hover .dropdown__menu, 
+.dropdown__subitem:hover > .dropdown__submenu {
+  max-height: 1000px;
+  transition: max-height .4s ease-in;
+}
+
+/* Rotate dropdown icon */
+.dropdown__item:hover .dropdown__arrow {
+  transform: rotate(180deg);
+}
+
+/*=============== DROPDOWN SUBMENU ===============*/
+.dropdown__add {
+  margin-left: auto;
+}
+
+.dropdown__sublink {
+  color: #e64545;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+@media screen and (max-width: 340px) {
+  .container {
+    margin-inline: 1rem;
+  }
+
+  .nav__link {
+    padding-inline: 1rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1118px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 2rem);
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav__toggle {
+    display: none;
+  }
+  .nav__list {
+    height: 100%;
+    display: flex;
+    column-gap: 1rem;
+  }
+  .nav__link {
+    height: 100%;
+    padding: 0;
+    justify-content: initial;
+    column-gap: .25rem;
+  }
+  .nav__link:hover {
+    background-color: transparent;
+  }
+
+  .dropdown__item, 
+  .dropdown__subitem {
+    position: relative;
+  }
+
+  .dropdown__menu, 
+  .dropdown__submenu {
+    max-height: initial;
+    overflow: initial;
+    position: absolute;
+    left: 0;
+    top: 6rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s, top .3s;
+  }
+
+  .dropdown__link, 
+  .dropdown__sublink {
+    padding-inline: 1rem 3.5rem;
+  }
+
+  .dropdown__subitem .dropdown__link {
+    padding-inline: 1rem;
+  }
+
+  .dropdown__submenu {
+    position: absolute;
+    left: 100%;
+    top: .5rem;
+  }
+
+  /* Show dropdown menu */
+  .dropdown__item:hover .dropdown__menu {
+    opacity: 1;
+    top: 5.5rem;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+
+  /* Show dropdown submenu */
+  .dropdown__subitem:hover > .dropdown__submenu {
+    opacity: 1;
+    top: 0;
+    pointer-events: initial;
+    transition: top .3s;
+  }
+}
+
+
+
+/* Overall container for search and social icons */
+.search-social-container {
+  position: fixed; /* Fix the container to the viewport */
+  top: 0; /* Stick to the top of the page */
+  left: 0; /* Align with the left edge */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f9fa; /* Light gray background */
+  border-bottom: 2px solid #ddd;
+  margin-top: 110px;
+  width: 100%;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures search input and button are properly spaced */
+  width: 500px;
+  
+  margin-left: 300px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  
+}
+
+.search-input { 
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 800px;
+}
+
+.search-input:focus {
+  border-color: #007bff; /* Highlight input border on focus */
+}
+
+.search-button {
+  background-color: #e64545;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 20px;
+  font-size: 16px;
+  width: 100px;
+}
+
+
+
+.search-button i {
+  font-size: 18px;
+}
+
+/* Social Media and Language Button Section */
+.social-media-container {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between social icons and language button */
+}
+
+.social-icon {
+  font-size: 24px;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+
+
+.language-button {
+  background-color: transparent;
+  border: 1px solid #000;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.language-button:hover {
+  background-color: #f1f1f1; /* Light background on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .search-social-container {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .search-form {
+      width: 100%;
+  }
+
+  .social-media-container {
+      margin-top: 20px;
+      width: 100%;
+      justify-content: flex-start;
+  }
+
+  .social-icon {
+      font-size: 20px;
+  }
+
+  .language-button {
+      margin-top: 10px;
+  }
+}
+
+
+
+footer {
+  background-color: #045c2c; /* Light background color for the footer */
+  padding: 20px 0; /* Padding for the footer */
+  
+}
+
+.footer-container {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-between; /* Space sections evenly */
+  max-width: 1200px; /* Maximum width for the footer */
+  margin: 0 auto; /* Center the footer */
+  padding: 0 20px; /* Padding on the sides */
+  
+}
+
+.footer-section {
+  flex: 1; /* Make each section take equal space */
+  padding: 0 20px; /* Padding inside each section */
+}
+
+.footer-section h3 {
+  margin-bottom: 10px; /* Space below the heading */
+  font-weight: bold;
+}
+
+.footer-section ul {
+  list-style-type: none; /* Remove bullets from list */
+  padding: 0; /* Remove padding */
+}
+
+.footer-section ul li {
+  margin-bottom: 5px; /* Space between list items */
+}
+
+.footer-section ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #d6d9db; /* Link color */
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.footer-section form {
+  display: flex; /* Flexbox for input and button */
+  flex-direction: column; /* Stack input and button */
+}
+
+.footer-section input[type="email"] {
+  padding: 10px; /* Padding for input */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 10px; /* Space below input */
+  width: 250px;
+}
+
+.footer-section button {
+  padding: 10px; /* Padding for button */
+  background-color: #e64545; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+
+.footer-bottom {
+  text-align: center; /* Center the copyright text */
+  margin-top: 20px; /* Space above the copyright */
+}
+
+/* Basic styling for product page */
+.product-page {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 200px;
+}
+
+.product-images {
+  width: 40%;
+}
+
+.product-images img {
+  width: 100%;
+  max-width: 500px;
+}
+
+.product-details {
+  width: 55%;
+  padding-left: 20px;
+}
+
+.product-details h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  color: #e64545;
+  margin-bottom: 20px;
+}
+
+.product-attributes {
+  margin-bottom: 15px;
+}
+
+.product-attributes label {
+  font-size: 1rem;
+}
+
+.add-to-cart {
+  background-color: #ff9900;
+  border: none;
+  padding: 15px 30px;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  background-color: #cc7a00;
+}
+
+/* Product Reviews Section */
+.product-reviews {
+  margin-top: 30px;
+}
+
+.reviews-list {
+  margin-top: 10px;
+}
+
+.reviews-list p {
+  font-style: italic;
+  font-size: 1rem;
+}
+
+/* Center the container */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px); /* Adjust height considering header/footer */
+  padding: 20px;
+  background-color: #f8f9fa;
+  margin-top: 120px;
+}
+
+/* Form wrapper styling */
+.form-wrapper {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Styling for the labels */
+.auth-form label {
+  display: block; /* Makes the label occupy the full width */
+  font-size: bold;
+  margin-bottom: 5px; /* Add some spacing below the label */
+  text-align: left; /* Aligns the text to the left */
+}
+
+.form-wrapper h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form styling */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button */
+.auth-button {
+  background-color: #e64545;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+/* Sign-in link */
+.signin-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: black;
+}
+
+.signin-link a {
+  color: #e64545;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signin-link a:hover {
+  text-decoration: underline;
+}
+
+.register-link {
+  font-size: 14px; /* Adjust font size as needed */
+  color: #000; /* General text color for the paragraph */
+  text-align: center;
+}
+
+.register-link a {
+  color: #cf2424; /* Black color for the link */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Optional: Make it bold for emphasis */
+}
+
+.register-link a:hover {
+  text-decoration: underline; /* Add underline on hover for better UX */
+}
+.forgot-password-link {
+  text-align: center; /* Center-align the link */
+  margin-bottom: 15px; /* Add spacing below */
+}
+
+.forgot-password-link a {
+  color: #cf2424; /* Red text for the link */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Optional: Make it bold for emphasis */
+}
+
+.forgot-password-link a:hover {
+  text-decoration: underline; /* Add underline on hover for better UX */
+}
