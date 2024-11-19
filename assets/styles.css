@@ -457,7 +457,7 @@ a {
 footer {
   background-color: #045c2c; /* Light background color for the footer */
   padding: 20px 0; /* Padding for the footer */
-  
+  margin-top: 300px;
 }
 
 .footer-container {
