@@ -17,112 +17,89 @@
 </head>
 
 <body>
-    <!--=============== HEADER ===============--> 
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav__data">
-                <a href="index.php"><img src="assets/img/logo.png" class="logo" alt="logo"></a>
-                <a href="index.php" class="nav-brand">MAJESTY ELECTRICALS</a>
+<!--=============== HEADER ===============--> 
+<header class="header">
+    <nav class="nav container" aria-label="Primary Navigation">
+        <!--=============== LOGO AND BRAND ===============-->
+        <div class="nav__data">
+            <a href="index.php" aria-label="Homepage">
+                <img src="assets/img/logo.png" class="logo" alt="Majesty Electricals Logo">
+            </a>
+            <a href="index.php" class="nav-brand">MAJESTY ELECTRICALS</a>
 
-                <div class="nav__toggle" id="nav__toggle">
-                    <i class="ri-menu-line nav__burger"></i>
-                    <i class="ri-close-line nav__close"></i>
-                </div>
-            </div>
+            <!-- Mobile Menu Toggle -->
+            <button class="nav__toggle" id="nav__toggle" aria-label="Toggle Navigation Menu" aria-expanded="false">
+                <i class="ri-menu-line nav__burger" aria-hidden="true"></i>
+                <i class="ri-close-line nav__close" aria-hidden="true"></i>
+            </button>
+        </div>
 
-            <!--=============== NAV MENU ===============-->
-            <div class="nav__menu">
-                <ul class="nav__list">
-                    <li><a href="#" class="nav__link">Home</a></li>
+        <!--=============== NAVIGATION MENU ===============-->
+        <div class="nav__menu" id="nav__menu" role="menu">
+            <ul class="nav__list">
+                <!-- Home Link -->
+                <li><a href="#" class="nav__link" role="menuitem">Home</a></li>
 
-                    <!--=============== DROPDOWN 1 ===============-->
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            Collections 
-                        </div>
-                        <ul class="dropdown__menu">
-                            <!-- DROPDOWN SUBMENU 1 -->
-                            <li class="dropdown__subitem">
-                                <div class="dropdown__link">Electrical Products</div>
-                                <ul class="dropdown__submenu">
-                                    <li><a href="#" class="dropdown__sublink">Conduit Pipes</a></li>
-                                    <li><a href="#" class="dropdown__sublink"> Payments</a></li>
-                                    <li><a href="#" class="dropdown__sublink"> Refunds</a></li>
-                                </ul>
-                            </li>
+                <!--=============== DROPDOWN: COLLECTIONS ===============-->
+                <li class="dropdown__item">
+                    <button class="nav__link" aria-haspopup="true" aria-expanded="false">
+                        Collections 
+                    </button>
+                    <ul class="dropdown__menu" role="menu">
+                        <!-- Submenu 1: Electrical Products -->
+                        <li class="dropdown__subitem">
+                            <a href="electrical_products.php" class="dropdown__link" role="menuitem">Electrical Products</a>
+                            <ul class="dropdown__submenu" role="menu">
+                                <li><a href="#" class="dropdown__sublink" role="menuitem">Conduit Pipes</a></li>
+                                <li><a href="#" class="dropdown__sublink" role="menuitem">Payments</a></li>
+                                <li><a href="#" class="dropdown__sublink" role="menuitem">Refunds</a></li>
+                            </ul>
+                        </li>
 
-                            <!-- DROPDOWN SUBMENU 2 -->
-                            <li class="dropdown__subitem">
-                                <div class="dropdown__link">Indoor Lighting</div>
-                                <ul class="dropdown__submenu">
-                                    <li><a href="#" class="dropdown__sublink">Conduit Pipes</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-cash-line"></i> Payments</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-refund-2-line"></i> Refunds</a></li>
-                                </ul>
-                            </li>
+                        <!-- Submenu 2: Indoor Lighting -->
+                        <li class="dropdown__subitem">
+                            <a href="indoor_lighting.php" class="dropdown__link" role="menuitem">Indoor Lighting</a>
+                            <ul class="dropdown__submenu" role="menu">
+                                <li><a href="#" class="dropdown__sublink" role="menuitem">Conduit Pipes</a></li>
+                                <li><a href="#" class="dropdown__sublink" role="menuitem"><i class="ri-cash-line"></i> Payments</a></li>
+                                <li><a href="#" class="dropdown__sublink" role="menuitem"><i class="ri-refund-2-line"></i> Refunds</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
 
-                            <!-- DROPDOWN SUBMENU 3 -->
-                            <li class="dropdown__subitem">
-                                <div class="dropdown__link">Outdoor Lighting</div>
-                                <ul class="dropdown__submenu">
-                                    <li><a href="#" class="dropdown__sublink">Conduit Pipes</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-cash-line"></i> Payments</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-refund-2-line"></i> Refunds</a></li>
-                                </ul>
-                            </li>
+                <!--=============== DROPDOWN: HELP ===============-->
+                <li class="dropdown__item">
+                    <button class="nav__link"  aria-expanded="false">
+                        Help
+                    </button>
+                    <ul class="dropdown__menu" role="menu">
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-user-line"></i> FAQ</a></li>
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-lock-line"></i> Support</a></li>
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-message-3-line"></i> Contact Us</a></li>
+                    </ul>
+                </li>
 
-                            <!-- DROPDOWN SUBMENU 4 -->
-                            <li class="dropdown__subitem">
-                                <div class="dropdown__link">Accessories</div>
-                                <ul class="dropdown__submenu">
-                                    <li><a href="#" class="dropdown__sublink">Conduit Pipes</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-cash-line"></i> Payments</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-refund-2-line"></i> Refunds</a></li>
-                                </ul>
-                            </li>
-                            <!-- DROPDOWN SUBMENU 5 -->
-                            <li class="dropdown__subitem">
-                                <div class="dropdown__link">Accessories</div>
-                                <ul class="dropdown__submenu">
-                                    <li><a href="#" class="dropdown__sublink">Conduit Pipes</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-cash-line"></i> Payments</a></li>
-                                    <li><a href="#" class="dropdown__sublink"><i class="ri-refund-2-line"></i> Refunds</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                <!--=============== CART LINK ===============-->
+                <li><a href="#" class="nav__link" role="menuitem"><i class="ri-shopping-cart-2-fill"></i> Cart</a></li>
 
-                    <!--=============== DROPDOWN 2 ===============-->
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            Help 
-                        </div>
-                        <ul class="dropdown__menu">
-                            <li><a href="#" class="dropdown__link"><i class="ri-user-line"></i> FAQ</a></li>
-                            <li><a href="#" class="dropdown__link"><i class="ri-lock-line"></i> Support</a></li>
-                            <li><a href="#" class="dropdown__link"><i class="ri-message-3-line"></i> Contact Us</a></li>
-                        </ul>
-                    </li>
+                <!--=============== DROPDOWN: ACCOUNT ===============-->
+                <li class="dropdown__item">
+                    <button class="nav__link" aria-haspopup="true" aria-expanded="false">
+                        <i class="ri-account-pin-circle-fill"></i> Account
+                    </button>
+                    <ul class="dropdown__menu" role="menu">
+                        <li><a href="signin.php" class="dropdown__link" role="menuitem"><i class="ri-user-line"></i> Signin</a></li>
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-lock-line"></i> My Account</a></li>
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-message-3-line"></i> Orders</a></li>
+                        <li><a href="#" class="dropdown__link" role="menuitem"><i class="ri-message-3-line"></i> Saved Items</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-                    <!--=============== DROPDOWN 3 ===============-->
-                    <li><a href="#" class="nav__link"><i class="ri-shopping-cart-2-fill"></i>Cart</a></li>
-
-                    <!--=============== DROPDOWN 2 ===============-->
-                    <li class="dropdown__item">
-                        <div class="nav__link">
-                            <i class="ri-account-pin-circle-fill"></i> Account
-                        </div>
-                        <ul class="dropdown__menu">
-                            <li><a href="signin.php" class="dropdown__link"><i class="ri-user-line"></i> Signin</a></li>
-                            <li><a href="#" class="dropdown__link"><i class="ri-lock-line"></i> My Account</a></li>
-                            <li><a href="#" class="dropdown__link"><i class="ri-message-3-line"></i> Orders</a></li>
-                            <li><a href="#" class="dropdown__link"><i class="ri-message-3-line"></i> Saved Items</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
     <div class="search-social-container">
     <!-- Search Section -->
